@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   File.hpp                                           :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 08:10:12 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/05/07 01:13:29 by kmummadi         ###   ########.fr       */
+/*   Created: 2025/05/05 21:50:57 by kmummadi          #+#    #+#             */
+/*   Updated: 2025/05/06 08:26:39 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
 #include "utils.hpp"
 
-class File {
+std::string colortxt(const std::string &str, const std::string &color) {
+  return (color + str + RESET);
+}
 
-private:
-  std::string _filename;
-  std::string _s1;
-  std::string _s2;
-  std::ifstream _infile;
-  std::ofstream _opfile;
-  bool _success;
-  void input_checker(int argc, char **argv);
-  void file_checker();
+void colorprint(const std::string &str, const std::string &color) {
+  std::string colorstr = colortxt(str, color);
+  std::cout << colorstr;
+}
 
-public:
-  // Constructor and Destructor
-  File(int argc, char **argv);
-  ~File();
-
-  bool check_status();
-  void make_replacefile();
-  void print_files();
-};
+void errorprint(const std::string &str, const std::string &color) {
+  std::cerr << colortxt("\n[Error]: ", color) << colortxt(str, color) << "\n";
+  return;
+}

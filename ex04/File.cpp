@@ -12,20 +12,30 @@
 
 #include "File.hpp"
 
+// Constructor
+// Initialise the members of the class using input_checker
 File::File(int argc, char **argv) { input_checker(argc, argv); }
 
+// Destructor
+// Remember to close the streams before destroying the class
 File::~File() {
   _infile.close();
   _opfile.close();
 }
 
+/*
+  Checks if the input given by user is valid and only then assigns
+  the members of the class. Also file_checker() is called to check if
+  the file provided is valid.
+*/
 void File::input_checker(int argc, char **argv) {
   if (argc != 4) {
     errorprint("Invalid number of inputs!", RED);
-    _success = false;
+    _success =
+        false; // this bool helps us to check if everythings perfect or not.
     return;
   }
-  _s1 = argv[2];
+  _s1 = argv[2]; // string to be replaced by _s2
   _s2 = argv[3];
   if (_s1.empty() || _s2.empty()) {
     errorprint("Empty strings as input", RED);
@@ -37,8 +47,8 @@ void File::input_checker(int argc, char **argv) {
   return;
 }
 
+// Checks if the file provided is valid.
 void File::file_checker() {
-
   _infile.open(_filename);
   if (!_infile) {
     errorprint("Input file cannot be opened", RED);
@@ -56,8 +66,17 @@ void File::file_checker() {
   return;
 }
 
+// Just return the status if class creation was successful or not
 bool File::check_status() { return (_success); }
 
+/*
+ Generate <filename>.replace by substituting instances of s1 with s2
+ 1. Read line by line from the given file.
+ 2. Find instance of s1 in the line:
+    - If instance found -> copy the line until s1 and
+      then write s2 at the end instead of s1 inside the replace file.
+    - Else if instance not found -> Copy the whole line to replace file
+*/
 void File::make_replacefile() {
   std::string line;
   size_t found = 0;
@@ -77,6 +96,7 @@ void File::make_replacefile() {
   }
 }
 
+// Just incase if someone wants to print the contents of the file
 void File::print_files() {
   std::cout << "\n";
   fileprint(_filename);

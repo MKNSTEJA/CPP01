@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 21:47:22 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/05/07 01:13:43 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/05/07 01:09:49 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ const std::string ITALIC = "\033[3m";
 std::string colortxt(const std::string &str, const std::string &color);
 void colorprint(const std::string &str, const std::string &color);
 void errorprint(const std::string &str, const std::string &color);
-void fileprint(const std::string &filename);
